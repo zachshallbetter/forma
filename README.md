@@ -27,7 +27,7 @@ Forma is a cutting-edge photogrammetry utility meticulously designed to process 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/forma.git
+   git clone https://github.com/zachshallbetter/forma.git
    cd forma
    ```
 
@@ -44,23 +44,6 @@ Forma is a cutting-edge photogrammetry utility meticulously designed to process 
    pip install -r requirements.txt
    ```
 
-   The `requirements.txt` file includes the following dependencies:
-
-   ```
-   numpy>=1.21.0
-   opencv-python>=4.5.0
-   open3d>=0.13.0
-   scipy>=1.7.0
-   matplotlib>=3.4.0
-   PyYAML>=5.4.0
-   click>=8.0.0
-   tqdm>=4.62.0
-   scikit-image>=0.18.0
-   pillow>=8.3.0
-   setuptools>=61.0.0
-   wheel>=0.36.0
-   ```
-
 4. Install Forma:
 
    ```bash
@@ -72,10 +55,11 @@ Forma is a cutting-edge photogrammetry utility meticulously designed to process 
    - Package Name: forma
    - Version: 0.1.0
    - Author: Your Name
-   - Author Email: <your.email@example.com>
+   - Author Email: your.email@example.com
    - Description: A brief description of your project
    - Long Description: Contents of README.md
-   - URL: <https://github.com/yourusername/forma>
+   - Long Description Content Type: text/markdown
+   - URL: https://github.com/yourusername/forma
    - Python Requirement: >=3.7
    - Entry Point: forma=forma.cli:main
 
@@ -86,18 +70,7 @@ Forma is a cutting-edge photogrammetry utility meticulously designed to process 
      cp config.yaml.example config.yaml
      ```
 
-   - Open `config.yaml` in a text editor and modify the settings according to your needs. The configuration file includes the following key settings:
-
-     ```yaml
-     logging_level: INFO
-     feature_detector: SIFT
-     matcher: BF
-     ratio_threshold: 0.75
-     smoothing_iterations: 3
-     reference_distance_real: 100.0
-     reference_point1: [0, 0, 0]
-     reference_point2: [0, 0, 100]
-     ```
+   - Open `config.yaml` in a text editor and modify the settings according to your needs.
 
 6. Verify the installation:
 

@@ -1,4 +1,4 @@
-#!/Users/zachshallbetter/Sites/forma/venv/bin/python3.12
+#!/Users/zachshallbetter/Sites/forma/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

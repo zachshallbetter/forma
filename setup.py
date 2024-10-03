@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
 import yaml
+import subprocess
+import sys
 
 # Read configuration from config.yaml
 with open('config.yaml', 'r') as config_file:
@@ -11,6 +13,26 @@ package_metadata = config.get('package_metadata', {})
 # Read requirements from requirements.txt
 with open('requirements.txt', 'r') as req_file:
     requirements = req_file.read().splitlines()
+
+def verify_open3d_installation():
+    try:
+        # Verify installation
+        subprocess.check_call([sys.executable, "-c", "import open3d as o3d; print(o3d.__version__)"])
+        
+        # Python API test
+        subprocess.check_call([sys.executable, "-c", 
+                               "import open3d as o3d; "
+                               "mesh = o3d.geometry.TriangleMesh.create_sphere(); "
+                               "mesh.compute_vertex_normals(); "
+                               "o3d.visualization.draw(mesh, raw_mode=True)"])
+        
+        # Open3D CLI test
+        subprocess.check_call(["open3d", "example", "visualization/draw"])
+        
+        print("Open3D installation verified successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error verifying Open3D installation: {e}")
+        sys.exit(1)
 
 setup(
     name=package_metadata.get('package_name', 'forma'),
@@ -35,3 +57,6 @@ setup(
         ],
     },
 )
+
+# Run Open3D verification after setup
+verify_open3d_installation()
