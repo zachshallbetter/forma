@@ -1,0 +1,25 @@
+# Camera Calibration Data
+
+camera_matrix:
+  - [1000.0, 0.0, 320.0]
+  - [0.0, 1000.0, 240.0]
+  - [0.0, 0.0, 1.0]
+
+distortion_coefficients:
+  - [-0.1, 0.03, 0.0, 0.0, 0.0]
+
+image_width: 640
+image_height: 480
+
+calibration_date: "2023-05-10"
+calibration_method: "Zhang's method"
+
+chessboard_size:
+  width: 9
+  height: 6
+
+square_size_mm: 25.0
+
+average_reprojection_error: 0.153
+
+notes: "Calibration performed using a 9x6 chessboard pattern. Please update with actual values after calibration."

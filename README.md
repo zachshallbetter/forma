@@ -1,111 +1,77 @@
 # Forma: Advanced Photogrammetry Utility for 3D Limb Modeling
 
+![Forma Sample Image](assets/sample_image.jpg)
+
 ## Overview
 
-Forma is a cutting-edge photogrammetry utility meticulously designed to process high-resolution images of limbs or specific body parts, creating highly accurate and detailed 3D models. These models are optimized for 3D printing, further digital processing, or analysis. Forma is an indispensable tool for medical professionals, prosthetic designers, researchers, and anyone working in the field of custom-fit medical devices or anatomical studies.
+Forma is a cutting-edge photogrammetry utility meticulously designed to process high-resolution images of limbs or specific body parts, creating accurate and detailed 3D models. These models are optimized for 3D printing, further digital processing, or analysis.
 
 ## Key Features
 
-- Sophisticated image preprocessing algorithms for optimal clarity and detail
-- Advanced camera calibration for precise measurements and scaling
-- State-of-the-art 3D model reconstruction from multiple image angles
-- Versatile export capabilities supporting a wide range of 3D file formats
-- User-friendly interface suitable for both beginners and experts
-- Customizable settings for different scanning scenarios and requirements
+- **Sophisticated Image Preprocessing:** Advanced algorithms for optimal clarity and detail.
+- **Precise Camera Calibration:** Ensures accurate measurements and scaling.
+- **3D Model Reconstruction:** State-of-the-art reconstruction from multiple image angles.
+- **Versatile Export Options:** Supports STL, OBJ, and PLY formats.
+- **User-Friendly Interface:** Intuitive CLI suitable for both beginners and experts.
+- **Customizable Settings:** Tailor processing parameters to your needs.
 
 ## System Requirements
 
-- Operating System: Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
-- CPU: Multi-core processor (Intel i5/i7 or AMD Ryzen 5/7 recommended)
-- RAM: Minimum 8GB, 16GB or more recommended for large datasets
-- GPU: NVIDIA GPU with CUDA support recommended for faster processing
-- Storage: SSD with at least 10GB free space, more for larger projects
-- Python: Version 3.7 or higher
+- **Operating System:** Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
+- **CPU:** Multi-core processor (Intel i5/i7 or AMD Ryzen 5/7 recommended)
+- **RAM:** Minimum 8GB, 16GB or more recommended for large datasets
+- **GPU:** NVIDIA GPU with CUDA support recommended for faster processing
+- **Storage:** SSD with at least 10GB free space
+- **Python:** Version 3.7 or higher
 
 ## Installation
 
-1. Clone the repository:
+1. **Clone the Repository**
 
-   ```bash
-   git clone https://github.com/zachshallbetter/forma.git
-   cd forma
-   ```
+    ```bash
+    git clone https://github.com/yourusername/forma.git
+    cd forma
+    ```
 
-2. Create and activate a virtual environment (strongly recommended):
+2. **Create and Activate a Virtual Environment**
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-3. Install the required dependencies:
+3. **Install Required Dependencies**
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4. Install Forma:
+4. **Install Forma**
 
-   ```bash
-   pip install .
-   ```
+    ```bash
+    pip install .
+    ```
 
-   The `setup.py` file configures the package with the following metadata:
+5. **Verify Installation**
 
-   - Package Name: forma
-   - Version: 0.1.0
-   - Author: Your Name
-   - Author Email: your.email@example.com
-   - Description: A brief description of your project
-   - Long Description: Contents of README.md
-   - Long Description Content Type: text/markdown
-   - URL: https://github.com/yourusername/forma
-   - Python Requirement: >=3.7
-   - Entry Point: forma=forma.cli:main
+    ```bash
+    forma --help
+    ```
 
-5. Configure Forma:
-   - Copy the `config.yaml.example` file to `config.yaml` in your working directory:
+    You should see the CLI help message.
 
-     ```bash
-     cp config.yaml.example config.yaml
-     ```
+## Quick Start Guide
 
-   - Open `config.yaml` in a text editor and modify the settings according to your needs.
+### **1. Image Acquisition**
 
-6. Verify the installation:
+Before using Forma, capture high-quality images following these guidelines:
 
-   ```bash
-   forma --version
-   ```
+- **Use even, diffused lighting** to minimize shadows.
+- **Capture images from multiple angles** covering all sides of the limb.
+- **Maintain a consistent distance** from the subject.
+- **Use a neutral background** to enhance segmentation.
+- **Include reference markers** for accurate scaling.
 
-Now you're ready to use Forma! For detailed usage instructions, please refer to the Usage section below or consult our comprehensive documentation.
+### **2. Preprocess Images**
 
-## Quick Start
-
-After installation, you can start using Forma with these basic commands:
-
-1. Preprocess images:
-
-   ```bash
-   forma preprocess --input_dir path/to/raw_images --output_dir path/to/preprocessed_images
-   ```
-
-2. Calibrate camera:
-
-   ```bash
-   forma calibrate --images_dir path/to/calibration_images --output calibration_data.npz
-   ```
-
-3. Reconstruct 3D model:
-
-   ```bash
-   forma reconstruct --images_dir path/to/preprocessed_images --output_dir path/to/reconstruction_output
-   ```
-
-4. Export 3D model:
-
-   ```bash
-   forma export --model_file path/to/model.ply --format stl --output_file model.stl
-   ```
-
-For more advanced usage and options, please refer to our detailed user manual.
+Preprocess your raw images to enhance quality.

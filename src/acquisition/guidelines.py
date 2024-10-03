@@ -11,3 +11,13 @@ class Guidelines:
         - Include a reference object or scale marker in some images.
         """
         print(message)
+
+    @staticmethod
+    def save_guidelines(filename):
+        with open(filename, 'w') as f:
+            f.write(Guidelines.get_guidelines())
+        print(f"Guidelines saved to {filename}")
+
+    @staticmethod
+    def get_guidelines():
+        return Guidelines.print_guidelines.__func__.__globals__['message']

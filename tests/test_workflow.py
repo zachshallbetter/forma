@@ -10,13 +10,20 @@ from src.reconstruction.mvs import MVSReconstructor
 from src.mesh_processing.mesh_processing import MeshProcessor
 from src.scaling_measurement.scaling_measurement import ScalingMeasurement
 from src.export.export import Exporter
+from scripts.generate_calibration_pattern import generate_synthetic_calibration_images
 
 class TestWorkflow(unittest.TestCase):
     def setUp(self):
         self.config = Config('config.yaml')
         self.input_dir = 'data/images/'
-        self.calibration_dir = 'data/calibration/'
+        self.calibration_dir = 'data/calibration_synthetic/'
         self.output_dir = 'data/outputs/'
+
+        # Generate synthetic calibration images with updated parameters
+        generate_synthetic_calibration_images(
+            self.calibration_dir, num_images=15, squares_x=9, squares_y=6, square_size=50
+        )
+
         self.calibration_output = os.path.join(self.output_dir, 'calibration_data.npz')
         self.processed_images_dir = os.path.join(self.output_dir, 'processed_images')
         self.mesh_output = os.path.join(self.output_dir, 'final_mesh.ply')

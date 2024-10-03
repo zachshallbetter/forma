@@ -3,36 +3,76 @@ logging_level: INFO
 
 # Feature detection settings
 feature_detector: SIFT  # Options: 'SIFT', 'ORB'
+feature_detector_params:
+  n_features: 0  # 0 means unlimited
+  n_octave_layers: 3
+  contrast_threshold: 0.04
+  edge_threshold: 10
+  sigma: 1.6
 
 # Feature matching settings
-matcher: BF  # Options: 'BF', 'FLANN'
-ratio_threshold: 0.75
+matcher: FLANN  # Options: 'BF', 'FLANN'
+ratio_threshold: 0.7
+cross_check: true
 
 # Mesh processing settings
-smoothing_iterations: 3
+smoothing_iterations: 5
+simplification_target_percent: 0.5
 
 # Scaling and measurement settings
 reference_distance_real: 100.0  # Real-world distance in mm
 reference_point1: [0, 0, 0]
 reference_point2: [0, 0, 100]
 
-# Package metadata settings
-package_name: forma
-version: 0.1.0
-author: Your Name
-author_email: your.email@example.com
-description: A brief description of your project
-long_description: file: README.md
-long_description_content_type: text/markdown
-url: https://github.com/yourusername/forma
-classifiers:
-  - Programming Language :: Python :: 3
-  - License :: OSI Approved :: MIT License
-  - Operating System :: OS Independent
+# Image preprocessing settings
+image_resize_max_dimension: 2048
+image_denoise_strength: 10
+
+# SfM settings
+sfm_algorithm: 'incremental'  # Options: 'incremental', 'global'
+bundle_adjustment_refine_focal_length: true
+bundle_adjustment_refine_principal_point: true
+bundle_adjustment_refine_radial_distortion: true
+
+# MVS settings
+mvs_algorithm: 'pmvs'  # Options: 'pmvs', 'cmvs'
+mvs_resolution_level: 1
 
 # Build system requirements
 build_system:
   requires:
-    - setuptools>=45.0
-    - wheel
+    - setuptools>=61.0.0
+    - wheel>=0.37.0
   build-backend: setuptools.build_meta
+
+# Open3D verification settings
+open3d_verification:
+  enabled: true
+  python_api_test: true
+  cli_test: true
+  visualization_test: true
+
+# Performance settings
+multithreading: true
+gpu_acceleration: true
+max_workers: 4  # Added max_workers setting
+
+# Dependencies
+dependencies:
+  - opencv-python
+  - numpy
+  - PyYAML
+  - open3d
+  - pillow
+  - matplotlib
+  - scikit-learn
+  - opencv-python-headless
+
+# Input/Output settings
+images_dir: './data/images'  # Added images_dir setting
+output_dir: './data/output'  # Added output_dir setting
+
+# Calibration settings
+chessboard_size: [8, 5]  # Number of inner corners (squares_x - 1, squares_y - 1)
+square_size: 50  # Should match the square_size used in the pattern generator
+calibration_data_file: './data/calibration/calibration_data.yaml'  # Added calibration_data_file setting

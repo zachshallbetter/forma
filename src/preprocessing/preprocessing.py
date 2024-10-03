@@ -1,12 +1,15 @@
 import os
 import cv2
+import numpy as np
 from src.utils.logger import get_logger
 from concurrent.futures import ThreadPoolExecutor
+from src.utils.file_io import FileIO
 
 class Preprocessor:
     def __init__(self, config):
         self.config = config
         self.logger = get_logger(self.__class__.__name__)
+        self.file_io = FileIO(config)
 
     def process(self, input_dir, output_dir):
         self.logger.info(f"Processing images from {input_dir}")
@@ -35,7 +38,20 @@ class Preprocessor:
             self.logger.error(f"Error processing {filename}: {e}")
 
     def preprocess_image(self, img):
-        # Implement preprocessing steps (e.g., noise reduction, segmentation)
+        # Implement preprocessing steps
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        # Additional preprocessing...
-        return gray
+        
+        # Apply Gaussian blur for noise reduction
+        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+        
+        # Apply adaptive thresholding for segmentation
+        thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        
+        # Apply morphological operations to remove small noise
+        kernel = np.ones((3,3), np.uint8)
+        opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=2)
+        
+        # Edge detection using Canny
+        edges = cv2.Canny(opening, 100, 200)
+        
+        return edges

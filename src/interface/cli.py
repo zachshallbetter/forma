@@ -1,14 +1,18 @@
 import argparse
+import logging
 
 from src.preprocessing.preprocessing import Preprocessor
 from src.calibration.calibration import Calibrator
 from src.reconstruction.sfm import SfMReconstructor
 from src.reconstruction.mvs import MVSReconstructor
 from src.export.export import Exporter
+from src.utils.logger import get_logger
+from src.acquisition.guidelines import Guidelines
 
 class CLI:
     def __init__(self, config):
         self.config = config
+        self.logger = get_logger(self.__class__.__name__)
 
     def run(self):
         # Set up the main parser
@@ -94,7 +98,8 @@ class CLI:
             if dense_cloud is None:
                 raise RuntimeError("MVS reconstruction failed.")
             # Save dense_cloud to args.output_dir
-            # ...
+            # TODO: Implement saving of dense cloud
+            self.logger.info(f"Reconstruction completed. Output saved to {args.output_dir}")
         except Exception as e:
             self.logger.error(f"Reconstruction failed: {e}")
 
@@ -106,16 +111,15 @@ class CLI:
             self.logger.error(f"Export failed: {e}")
 
     def guidelines(self):
-        from src.acquisition.guidelines import Guidelines
         Guidelines.print_guidelines()
 
     def interactive(self):
         print("Entering interactive mode. Type 'help' for commands.")
         while True:
             try:
-                cmd = input('> ').strip()
+                cmd = input('> ').strip().lower()
                 if cmd == 'help':
-                    print("Available commands: preprocess, calibrate, reconstruct, export, exit")
+                    print("Available commands: preprocess, calibrate, reconstruct, export, guidelines, exit")
                 elif cmd == 'preprocess':
                     input_dir = input('Enter input directory: ')
                     output_dir = input('Enter output directory: ')
@@ -133,6 +137,8 @@ class CLI:
                     file_format = input('Enter export format (stl/obj/ply): ')
                     output_file = input('Enter output file path: ')
                     self.export(argparse.Namespace(model_file=model_file, format=file_format, output_file=output_file))
+                elif cmd == 'guidelines':
+                    self.guidelines()
                 elif cmd == 'exit':
                     print("Exiting interactive mode.")
                     break
@@ -141,3 +147,5 @@ class CLI:
             except KeyboardInterrupt:
                 print("\nExiting interactive mode.")
                 break
+            except Exception as e:
+                self.logger.error(f"An error occurred: {e}")
