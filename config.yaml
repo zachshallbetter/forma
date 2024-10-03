@@ -1,0 +1,38 @@
+# General settings
+logging_level: INFO
+
+# Feature detection settings
+feature_detector: SIFT  # Options: 'SIFT', 'ORB'
+
+# Feature matching settings
+matcher: BF  # Options: 'BF', 'FLANN'
+ratio_threshold: 0.75
+
+# Mesh processing settings
+smoothing_iterations: 3
+
+# Scaling and measurement settings
+reference_distance_real: 100.0  # Real-world distance in mm
+reference_point1: [0, 0, 0]
+reference_point2: [0, 0, 100]
+
+# Package metadata settings
+package_name: forma
+version: 0.1.0
+author: Your Name
+author_email: your.email@example.com
+description: A brief description of your project
+long_description: file: README.md
+long_description_content_type: text/markdown
+url: https://github.com/yourusername/forma
+classifiers:
+  - Programming Language :: Python :: 3
+  - License :: OSI Approved :: MIT License
+  - Operating System :: OS Independent
+
+# Build system requirements
+build_system:
+  requires:
+    - setuptools>=45.0
+    - wheel
+  build-backend: setuptools.build_meta
