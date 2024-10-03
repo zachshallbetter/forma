@@ -8,27 +8,29 @@ def main():
         version='0.1.0',
         author='Zachary Shallbetter',
         author_email='zach@shallbetter.com',
-        description='Forma - Advanced Photogrammetry Utility for Medical Applications',
+        description='Forma - Advanced Photogrammetric Reconstruction System for Medical Applications',
         long_description=open('README.md').read(),
         long_description_content_type='text/markdown',
         url='https://github.com/zachshallbetter/forma',
-        packages=find_packages('src'),  # Look for packages inside 'src'
-        package_dir={'': 'src'},        # Root package directory is 'src'
+        packages=find_packages('src'),                 # Search for packages in 'src'
+        package_dir={'': 'src'},                       # Package directory is 'src'
         install_requires=[
             'opencv-python>=4.5.0',
             'open3d>=0.18.0',
-            'numpy',
-            'PyYAML',
-            'pillow',
+            'numpy>=1.20.0',
+            'PyYAML>=5.4.0',
+            'Pillow>=8.0.0',
             'matplotlib>=3.4.0',
-            'scikit-learn',
-            'opencv-python-headless',
+            'scikit-learn>=0.24.0',
             'scipy>=1.7.0',
             'tqdm>=4.62.0'
         ],
+        extras_require={
+            'gpu': ['cupy>=9.0.0'],
+        },
         entry_points={
             'console_scripts': [
-                'forma=forma.main:main',  # Points to 'main' function in 'forma/main.py'
+                'forma=forma.main:main',              # Updated entry point
             ],
         },
         classifiers=[
@@ -39,6 +41,7 @@ def main():
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: 3.10',
             'Operating System :: OS Independent',
             'Topic :: Scientific/Engineering :: Medical Science Apps.',
         ],
