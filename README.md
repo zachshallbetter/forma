@@ -25,7 +25,7 @@ The intended core feature is generating 3D models of anatomical structures from 
 What exists in the code today, and what is planned:
 
 - **Image Preprocessing**: Converts each image to grayscale, applies Gaussian blur, adaptive thresholding, morphological opening and Canny edge detection, and writes the edge map. Runs across images with a thread pool.
-- **Camera Calibration**: Chessboard-based calibration with OpenCV (`findChessboardCorners`, `cornerSubPix`, `calibrateCamera`), saving the camera matrix and distortion coefficients. A script generates synthetic chessboard images for testing.
+- **Camera Calibration**: Chessboard-based calibration with OpenCV (`findChessboardCorners`, `cornerSubPix`, `calibrateCamera`). Saving the camera matrix and distortion coefficients is attempted but fails: `FileIO` has no `save_calibration_data` method. A script generates synthetic chessboard images for testing.
 - **Feature Detection and Matching**: SIFT, ORB or AKAZE detection; brute-force or FLANN matching with a ratio test.
 - **3D Model Reconstruction** (planned): Structure from Motion (SfM) is sketched but references helpers that are not defined. Multi-View Stereo (MVS) is a TODO placeholder.
 - **Mesh Processing** (partial): Helper methods for cleanup, hole filling, smoothing, decimation and basic mesh statistics (vertex/face count, volume, surface area, manifold checks) with Open3D. The main `process_mesh` entry point does not call them yet.
@@ -108,7 +108,7 @@ Forma's calibration process:
 2. **Multiple Angles**: Capture the calibration pattern from various angles and distances.
 3. **Automatic Detection**: Detects chessboard corners in each image with OpenCV.
 4. **Parameter Estimation**: Calculates the camera matrix with `cv2.calibrateCamera`.
-5. **Distortion Coefficients**: Estimates lens distortion coefficients and saves them with the camera matrix. Applying the correction to images is not implemented.
+5. **Distortion Coefficients**: Estimates lens distortion coefficients. The step then calls `file_io.save_calibration_data`, which `src/utils/file_io.py` does not define, so nothing is saved. Applying the correction to images is not implemented.
 
 Known issue: the corner-drawing call uses the refined corners before they are computed, so calibration fails on the first image where a chessboard is found.
 
