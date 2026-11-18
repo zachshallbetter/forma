@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Forma"
+abstract: >-
+  Photogrammetric reconstruction of anatomical structures into 3D models for
+  prosthetics and orthotics.
+type: software
+authors:
+  - family-names: Shallbetter
+    given-names: Zach
+version: "0.1.0"
+license: MIT
+repository-code: "https://github.com/zachshallbetter/forma"
