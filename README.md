@@ -202,6 +202,39 @@ Forma is continuously evolving to meet the changing needs of the medical device 
 
 We welcome contributions from the community to help shape the future of Forma and advance the field of medical device manufacturing. If you're interested in contributing, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to get started.
 
+## Repository Map
+
+- `src/`: the `forma` package, one subpackage per pipeline stage (`acquisition`, `preprocessing`, `feature_detection`, `matching`, `calibration`, `reconstruction`, `mesh_processing`, `scaling_measurement`, `export`, `interface`, `utils`)
+- `forma_cli.py`: command-line entry point
+- `config.yaml`: default configuration
+- `tests/`: unit tests, one module per pipeline stage plus a workflow test
+- `scripts/`: helper scripts (calibration pattern generation, image grouping, environment setup)
+- `docs/`: user manual, developer guide and API reference
+- `setup.py`, `requirements.txt`: packaging and dependencies
+- `.github/workflows/python-app.yml`: the CI checks
+
+## Verification
+
+The checks CI runs on every push and pull request to `main`:
+
+```bash
+python -m unittest discover tests   # unit tests
+flake8 .                            # lint
+black --check .                     # formatting
+```
+
+These are unit tests and static checks. This repository records no empirical accuracy evaluation of reconstructed models.
+
+## Status and Limitations
+
+- Version `0.1.0` (git tag `v0.1.0`); `setup.py` classifies it as Development Status 4 - Beta.
+- This repository documents no clinical validation and no regulatory clearance for any medical use. Treat the capabilities and accuracy statements above as design goals, not verified results.
+- "Future Developments" lists ideas, not implemented features.
+
+## License
+
+Forma is released under the [MIT License](LICENSE).
+
 ## References
 
 [^1]: Smith, J. et al. (2022). "Advancements in 3D Modeling for Medical Devices". *Journal of Biomedical Engineering*, 45(3), 234-248.

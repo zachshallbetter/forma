@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a new pipeline stage, option or export format.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Describe the stage or output you want and the kind of input images you have.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The behavior you want
+      description: What should Forma do? What is the use case?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: How you imagine it
+      description: A command, an option, an API, or a change to the docs.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
